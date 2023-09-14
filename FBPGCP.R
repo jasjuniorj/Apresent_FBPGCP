@@ -1,5 +1,5 @@
 ########## VII Forum Brasileiro de Pós-Graduação em Ciência Política  ##############
-########## É tudo sobre média? ###################################
+########################## O Domínio da Média ###################################
 
 # Pacotes
 
@@ -7,19 +7,14 @@ library(readxl)
 library(dplyr)
 library(tidyr)
 library(ggplot2)
-library(forcats)
 library(viridis)
 library(hrbrthemes)
-library(stringr)
-library(psych)
-library(factoextra)
-library(plm)
-library(lubridate)
-library(deflateBR)
+
 
 # Base
 
-load("C:/Users/jasju/Desktop/backup/documentos/2021/Documentos/Oportunidades/EducRenato/Dados/Fundeb/Fundeb.RData")
+baseg <- read_excel("BFundeb.xlsx")
+
 
 ## Modelo lineares 
 
@@ -162,13 +157,11 @@ Modcomp %>% filter(Modelos=="Linear"| Modelos=="Quant-Superior"|Modelos=="Quant-
         panel.grid.major = element_blank(),
         panel.grid.minor = element_line(colour = alpha("gray", .1)))+
   theme_minimal()+theme(legend.position = "bottom")+scale_color_manual(values = c("#CD0000", "#062424", "#93A5B4"))+
-  labs(title = "Investimento em Profissionai - Modelos Linear e
+  labs(title = "Investimento em Profissionais - Modelos Linear e
                  Quantílico 0.25, 0.75")
 
 
 ## Modelos de Painel 
-
-
 
 dados <- data.frame(
   Categoria = factor(c("A", "B", "C", "D", "E")),
@@ -199,7 +192,7 @@ ggplot(ModCompPain,aes(x=as.factor(Tipo), y=Profis))+
                                               panel.grid.major = element_blank(),
                                               panel.grid.minor = element_line(colour = alpha("gray", .1)))+
   scale_y_continuous(breaks = seq(0.0, 0.0050, 0.001), limits = c(0.0, 0.0050))+
-  theme_minimal()+theme(legend.position = "bottom")+ ylab("Investimento por Aluno")+xlab(" ")+
+  theme_minimal()+theme(legend.position = "bottom")+ ylab("Invest. Profissionais")+xlab(" ")+
   labs(title = "Investimento em Profissionais e Ideb - Modelos com Dados de Painel - 
                                   Linear e Quantílicos")
 
